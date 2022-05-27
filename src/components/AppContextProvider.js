@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 
 const AppContext = createContext({});
 
-const AppAppContextProvider = ({children}) => {
+const AppContextProvider = ({children}) => {
     const [username, setUsername] = useState('');
     const [bearer, setBearer] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
@@ -36,4 +36,4 @@ const AppAppContextProvider = ({children}) => {
 }
 
 export default AppContext
-export { AppAppContextProvider };
+export { AppContextProvider };

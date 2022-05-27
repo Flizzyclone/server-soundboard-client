@@ -1,6 +1,7 @@
 import Login from '../components/Login'
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
+import { AppAppContextProvider } from '../components/AppContextProvider';
 
 const particleOptions = {
   particles: {

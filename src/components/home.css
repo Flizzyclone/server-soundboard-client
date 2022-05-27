@@ -3,8 +3,8 @@ body {
   background-color: #1c2230;
 }
 #homeDiv {
-  margin-left:calc(20%);
-  max-width:80%;
+  margin-left:20%;
+  max-width:calc(80% - 6em);
   overflow-x:hidden;
 }
 #sideDiv {

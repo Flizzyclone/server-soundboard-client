@@ -5,15 +5,15 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { AppContextComponent } from './ContextProvider'
+import AppContext from './AppContextProvider'
 
 function SideMenu() {
-  const context = useContext(AppContextComponent);
+  const { logOut } = useContext(AppContext);
   const navigate = useNavigate();
 
   const logout = () => {
-    context.updateLogOut();
-    navigate('/login')
+    logOut();
+    navigate('/login');
   }
 
   return (

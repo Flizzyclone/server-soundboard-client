@@ -6,11 +6,11 @@ import Stack from '@mui/material/Stack';
 import LoadingButton from '@mui/lab/LoadingButton';
 import TextField from '@mui/material/TextField';
 import { Typography, useTheme } from '@mui/material';
-import { AppContextComponent } from './ContextProvider'
+import AppContext from './AppContextProvider'
 const BASE_URL = 'http://localhost:4001';
 
 function Login() {
-  const context = useContext(AppContextComponent);
+  const { loggedIn, logIn, logOut } = useContext(AppContext);
   const navigate = useNavigate();
 
   const theme = useTheme();
@@ -22,7 +22,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if(context.loggedIn) {
+    if(loggedIn) {
       setLoading(true);
       let headers = new Headers();
       headers.set('Authorization', `Bearer ${window.sessionStorage.getItem("token")}`);
@@ -34,7 +34,7 @@ function Login() {
           navigate('/');
         } else {
           setLoading(false);
-          context.updateLogOut();
+          logOut();
         }
       })
     }
@@ -61,7 +61,7 @@ function Login() {
         } else if (res.status == 200) {
           let resJson = await res.json();
           let bearer = resJson.token;
-          context.updateLogIn({token: bearer, username: username});
+          logIn({token: bearer, username: username});
           setErrorEnter(false);
           setHelperText("");
           navigate('/');

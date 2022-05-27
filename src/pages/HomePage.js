@@ -1,31 +1,34 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { useNavigate } from 'react-router';
-import { AppContextComponent } from '../components/ContextProvider';
+import AppContext from '../components/AppContextProvider';
 import SideMenu from '../components/SideMenu';
-import SoundGrid from '../components/SoundGrid'
+import SoundGrid from '../components/SoundGrid';
+import UploadModal from '../components/UploadModal';
 import '../components/home.css';
 const BASE_URL = 'http://localhost:4001';
 
 function Home() {
-  const context = useContext(AppContextComponent);
+  const { loggedIn } = useContext(AppContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!context.loggedIn) {
+    if(!loggedIn) {
       navigate("/login");
     }
   });
 
-  return (
-    <div>
-      <div id="sideDiv">
-        <SideMenu></SideMenu>
+
+    return (
+      <div>
+        <UploadModal></UploadModal>
+        <div id="sideDiv">
+          <SideMenu></SideMenu>
+        </div>
+        <div id="homeDiv">
+          <SoundGrid></SoundGrid>
+        </div>
       </div>
-      <div id="homeDiv">
-        <SoundGrid/>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Home;

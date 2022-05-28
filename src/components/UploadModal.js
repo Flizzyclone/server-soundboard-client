@@ -38,7 +38,7 @@ function UploadModal() {
       headers:headers,
       body: formData
     }).then(() => {
-      confirmUpload(`Sound ${sounds.length+1}`);
+      confirmUpload();
       setLoading(false);
       setFileStatus('Upload a Sound (MP3)');
       setFileName('');

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Grid, Paper, IconButton, Button, Stack, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SurroundSoundIcon from '@mui/icons-material/SurroundSound';
@@ -6,7 +6,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import HomeContext from './HomeContextProvider';
 
 function SoundGrid() {
-  const { openUploadModal, sounds } = useContext(HomeContext);
+  const { openUploadModal, sounds, updateSounds } = useContext(HomeContext);
+
+  useEffect(() => {
+    console.log('upd sound')
+    updateSounds();
+  },[]);
 
   const openEditModal = () => {
 

@@ -10,9 +10,9 @@ const HomeContextProvider = ({children}) => {
         setUploadingSound(true)
     }
 
-    const confirmUpload = (fileName) => {
+    const confirmUpload = (fileName,fileId) => {
         let newSounds = sounds;
-        newSounds.push({name: fileName})
+        newSounds.push({name: fileName}) //this isnt gonna work if user has two sounds with same name, no way to know what string server assigned for id, just request the api for the list of sounds again
         setSounds(newSounds);
         setUploadingSound(false);
     }

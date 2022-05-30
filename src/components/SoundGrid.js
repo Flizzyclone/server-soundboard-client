@@ -9,15 +9,12 @@ function SoundGrid() {
   const { openUploadModal, sounds, updateSounds } = useContext(HomeContext);
 
   useEffect(() => {
-    console.log('upd sound')
     updateSounds();
   },[]);
 
   const openEditModal = () => {
 
   }
-
-  console.log(sounds)
 
   return (
     <Grid container spacing={4} sx={{margin:'auto', marginTop:'0em', maxWidth:'100%'}}>

@@ -8,7 +8,7 @@ import AppContext from './AppContextProvider';
 const BASE_URL = 'http://localhost:4001';
 
 function UploadModal() {
-  const { uploadingSound, confirmUpload, sounds } = useContext(HomeContext);
+  const { uploadingSound, confirmUpload, closeUploadModal, sounds } = useContext(HomeContext);
   const { bearer, username } = useContext(AppContext);
 
   const [uploaded, setUploaded] = useState(false);
@@ -49,6 +49,14 @@ function UploadModal() {
     })
   }
 
+  const handleCancel = async () => {
+    closeUploadModal();
+    setLoading(false);
+    setFileStatus('Upload a Sound (MP3)');
+    setFileName('');
+    setFile();
+  }
+
   return (
     <div>
       <Snackbar open={errorMsg} autoHideDuration={6000} onClose={() => setErrorMsg(false)}>
@@ -65,7 +73,10 @@ function UploadModal() {
             <Input type="file" inputProps={{"accept":".mp3"}} id="fileUpload" sx={{display:'none'}} onChange={(e) => handleSelection(e)}></Input>
             <LoadingButton component="span" loading={loading} disabled={loading} loadingIndicator={<CircularProgress color="inherit" size={64}/>} variant='outlined' type='file' sx={{padding:'4px', width:'100%', aspectRatio:'1 / 0.5', fontSize:'large'}}>{fileStatus}<br/>{fileName}</LoadingButton>
             </label>
-            <LoadingButton variant='contained' sx={{maxWidth:'fit-content', alignSelf:'flex-end'}} loading={loading} disabled={!uploaded} onClick={handleUpload}>Confirm</LoadingButton>
+            <Stack spacing={1} direction='row' sx={{justifyContent:'flex-end'}}>
+            <Button vairant='outlined' sx={{maxWidth:'fit-content'}} onClick={handleCancel}>Cancel</Button>
+            <LoadingButton variant='contained' sx={{maxWidth:'fit-content'}} loading={loading} disabled={!uploaded} onClick={handleUpload}>Confirm</LoadingButton>
+            </Stack>
           </Stack>
         </Paper>
       </Modal>

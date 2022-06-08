@@ -30,7 +30,7 @@ function Login() {
         method:'GET',
         headers:headers
       }).then(async (res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           navigate('/');
         } else {
           setLoading(false);
@@ -38,7 +38,7 @@ function Login() {
         }
       })
     }
-  });
+  },[loggedIn,navigate,logOut]);
 
   const handleLogin = () => { //return 0 = give feedback that creds dont work
     setLoading(true);
@@ -54,11 +54,11 @@ function Login() {
         method:'GET',
         headers:headers
       }).then(async (res) => {
-        if(res.status == 401) {
+        if(res.status === 401) {
           setErrorEnter(true);
           setHelperText("Incorrect Username or Password");
           setLoading(false);
-        } else if (res.status == 200) {
+        } else if (res.status === 200) {
           let resJson = await res.json();
           let bearer = resJson.token;
           logIn({token: bearer, username: username});
@@ -79,7 +79,7 @@ function Login() {
   }
 
   const handleKey = (e) => {
-    if(e.charCode == 13) {
+    if(e.charCode === 13) {
       handleLogin();
     }
   }

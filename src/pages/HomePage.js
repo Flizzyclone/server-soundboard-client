@@ -1,11 +1,11 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { useNavigate } from 'react-router';
 import AppContext from '../components/AppContextProvider';
 import SideMenu from '../components/SideMenu';
 import SoundGrid from '../components/SoundGrid';
 import UploadModal from '../components/UploadModal';
+import EditModal from '../components/EditModal';
 import '../components/home.css';
-const BASE_URL = 'http://localhost:4001';
 
 function Home() {
   const { loggedIn } = useContext(AppContext);
@@ -21,6 +21,7 @@ function Home() {
     return (
       <div>
         <UploadModal></UploadModal>
+        <EditModal></EditModal>
         <div id="sideDiv">
           <SideMenu></SideMenu>
         </div>
